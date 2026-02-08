@@ -6,7 +6,7 @@ export const Body_login_login_access_tokenSchema = {
             anyOf: [
                 {
                     type: 'string',
-                    pattern: 'password'
+                    pattern: '^password$'
                 },
                 {
                     type: 'null'
@@ -20,6 +20,7 @@ export const Body_login_login_access_tokenSchema = {
         },
         password: {
             type: 'string',
+            format: 'password',
             title: 'Password'
         },
         scope: {
@@ -47,6 +48,7 @@ export const Body_login_login_access_tokenSchema = {
                     type: 'null'
                 }
             ],
+            format: 'password',
             title: 'Client Secret'
         }
     },
@@ -124,6 +126,18 @@ export const ItemPublicSchema = {
             type: 'string',
             format: 'uuid',
             title: 'Owner Id'
+        },
+        created_at: {
+            anyOf: [
+                {
+                    type: 'string',
+                    format: 'date-time'
+                },
+                {
+                    type: 'null'
+                }
+            ],
+            title: 'Created At'
         }
     },
     type: 'object',
@@ -202,7 +216,7 @@ export const NewPasswordSchema = {
         },
         new_password: {
             type: 'string',
-            maxLength: 40,
+            maxLength: 128,
             minLength: 8,
             title: 'New Password'
         }
@@ -258,13 +272,13 @@ export const UpdatePasswordSchema = {
     properties: {
         current_password: {
             type: 'string',
-            maxLength: 40,
+            maxLength: 128,
             minLength: 8,
             title: 'Current Password'
         },
         new_password: {
             type: 'string',
-            maxLength: 40,
+            maxLength: 128,
             minLength: 8,
             title: 'New Password'
         }
@@ -306,7 +320,7 @@ export const UserCreateSchema = {
         },
         password: {
             type: 'string',
-            maxLength: 40,
+            maxLength: 128,
             minLength: 8,
             title: 'Password'
         }
@@ -350,6 +364,18 @@ export const UserPublicSchema = {
             type: 'string',
             format: 'uuid',
             title: 'Id'
+        },
+        created_at: {
+            anyOf: [
+                {
+                    type: 'string',
+                    format: 'date-time'
+                },
+                {
+                    type: 'null'
+                }
+            ],
+            title: 'Created At'
         }
     },
     type: 'object',
@@ -367,7 +393,7 @@ export const UserRegisterSchema = {
         },
         password: {
             type: 'string',
-            maxLength: 40,
+            maxLength: 128,
             minLength: 8,
             title: 'Password'
         },
@@ -430,7 +456,7 @@ export const UserUpdateSchema = {
             anyOf: [
                 {
                     type: 'string',
-                    maxLength: 40,
+                    maxLength: 128,
                     minLength: 8
                 },
                 {
